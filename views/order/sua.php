@@ -19,9 +19,9 @@ if(isset($_POST['sua'])){
     }else{
         $TongTien = $SoLuong*35000;
     }
-    if (isset($isNuoc) && $isNuoc > 0){
-        $TongTien = $TongTien + 15000;
-    }
+//    if (isset($isNuoc) && $isNuoc > 0){
+//        $TongTien = $TongTien + 15000;
+//    }
     $id = trim($_GET['id']);
     $c_tintuc->updateOrder($id,$HoTen,$SoLuong,$TongTien,$Mota,$isVH);
 }
@@ -107,9 +107,9 @@ if(isset($_POST['sua'])){
                     <label for="hoten">Họ và tên</label>
                     <input type="text" class="form-control" name="hoten" id="hoten" placeholder="Họ và Tên" value="<?= $chitiet->HoTen; ?>" required>
                 </div>
-                <div class="form-group">
-                    <input type="checkbox" id="isNuoc" name="isNuoc" value="1"><label for="isNuoc">&nbsp; Thêm nước ép</label>
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <input type="checkbox" id="isNuoc" name="isNuoc" value="1"><label for="isNuoc">&nbsp; Thêm nước ép</label>-->
+<!--                </div>-->
                 <div class="form-group">
                     <label for="soluong">Số suất đặt</label>
                     <input type="text" class="form-control" name="soluong" id="soluong" value="<?= $chitiet->SoLuong; ?>" required>

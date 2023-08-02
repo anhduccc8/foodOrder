@@ -48,9 +48,9 @@ if(isset($_POST['them'])){
         if ($SoLuong < 1){ $SoLuong = 1; }
         $TongTien = $SoLuong*35000;
     }
-    if (isset($isNuoc) && $isNuoc > 0){
-        $TongTien = $TongTien + 15000;
-    }
+//    if (isset($isNuoc) && $isNuoc > 0){
+//        $TongTien = $TongTien + 15000;
+//    }
     $MoTa = $_POST['mota'];
     $Staus = 1;
 
@@ -146,7 +146,6 @@ if(isset($_POST['them'])){
 </nav>
     <div class="space20"></div>
     <div class="row main-left">
-        <div class="col-md-1"></div>
         <div class="col-md-12">
             <?php
             if (isset($_SESSION['user_error']) && isset($_GET['success']) ){
@@ -163,12 +162,12 @@ if(isset($_POST['them'])){
                 unset($_SESSION['sua_win']);
             }
             ?>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <!--               <img src="http://localhost/foodorder2/public/image/menu/2a8f3c5ecab80fe656a9.jpg" class="img-responsive" alt="..." style="max-height: 600px; float: right">-->
                 <!--               <img src="public/image/menu/--><?php //echo $image_menu->HinhMenu ?><!--" class="img-responsive" alt="..." style="max-height: 600px; float: right">-->
                 <a href="#" id="pop">
-                       <img src="http://localhost/foodOrder/public/image/menu/260522.jpg" class="img-responsive" alt="..." style="max-height: 500px; float: right; width: 100%;">
-<!--                    <img id="imageresource" src="public/image/menu/--><?php //echo $image_menu->HinhMenu ?><!--" style="max-height: 500px; float: right; width: 100%;">-->
+<!--                       <img src="http://localhost/foodOrder/public/image/menu/260522.jpg" class="img-responsive" alt="..." style="max-height: 500px; float: right; width: 100%;">-->
+                    <img id="imageresource" src="public/image/menu/<?php echo $image_menu->HinhMenu ?>" style="max-height: 500px; float: right; width: 100%;">
                 </a>
                 <a href="#" id="pop">
                     <img id="imageresource" src="public/image/menu/image2.jpg" style="max-height: 500px; width: 100%; float: right">
@@ -191,7 +190,6 @@ if(isset($_POST['them'])){
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"></div>
             <div class="col-md-5">
                 <form method="post" action="#">
                     <h2 style="font-weight: bold; color: red">ĐẶT CƠM NGÀY <?= date('d/m/Y'); ?> (<span id="demo_timer">9h30</span>)</h2>
@@ -200,7 +198,7 @@ if(isset($_POST['them'])){
                         <h5>- Văn minh lịch sự, không sửa hàng của đồng nghiệp.</h5>
                         <h5>- Thời hạn đăng ký đến 9h30 hằng ngày.</h5>
                         <h5><strong style="color: red;">STK Nhận tiền: 19036581222012 - Tech - BUI ANH DUC or <a
-                                        href="#" id="pop2" data-src="public/image/QR.jpg" >Quét mã QR</a></strong></h5>
+                                        href="#" id="pop2" data-src="public/image/RQ_shop.jpg" >Quét mã QR</a></strong></h5>
 
 <!--                        <a href="#" id="pop">-->
 <!--                            <img id="imageresource" src="public/image/menu/--><?php //echo $image_menu->HinhMenu ?><!--" style="max-height: 600px; float: right">-->
@@ -227,9 +225,9 @@ if(isset($_POST['them'])){
                         <label for="hoten">Họ và tên</label>
                         <input type="text" class="form-control" name="hoten" id="hoten" placeholder="Họ và Tên" required>
                     </div>
-                    <div class="form-group">
-                        <input type="checkbox" id="isNuoc" name="isNuoc" value="1"><label for="isNuoc">&nbsp; Thêm nước ép</label>
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <input type="checkbox" id="isNuoc" name="isNuoc" value="1"><label for="isNuoc">&nbsp; Thêm nước ép</label>-->
+<!--                    </div>-->
                     <div class="form-group">
                         <label for="soluong">Số suất đặt</label>
                         <input type="text" class="form-control" name="soluong" id="soluong" required>
@@ -266,19 +264,27 @@ if(isset($_POST['them'])){
                     <a href="#list_user" class="btn btn-success">Danh sách order hôm nay</a>
                 </form>
             </div>
-            <div class="col-md-3" style="border: 1px solid #ddd; width: 367px; min-height: 576px">
-                <h2 style="font-weight: bold; color: red; font-size: 15px">DANH SÁCH CHƯA THANH TOÁN TIỀN CƠM</h2>
-                <div style="width: 100%;  height: 30px"></div>
+            <div class="col-md-3" style="border: 1px solid #ddd; min-height: 576px">
+                <h2 style="font-weight: bold; color: red; font-size: 15px">DANH SÁCH CHƯA THANH TOÁN</h2>
+                <hr>
                 <?php
                     $countUnPaid = $c_tintuc->index2('');
                     $userNameUnPaid = $countUnPaid['userNameUnPaid'];
-//                    echo("<pre>");
-//                    var_dump($userNameUnPaid);
-//                    die();
+                    $userNameUnPaid_new_arr = array();
                 ?>
-                <?php foreach ($userNameUnPaid as $val) { ?>
-                    <p><?= $val->Hoten ?> - <?= date('d-m-Y', strtotime($val->created_at)) ?> - <?= number_format($val->TongTien) ?> <span style="color: red"> - Chưa thanh toán</span></p>
-                <?php } ?>
+                <?php foreach ($userNameUnPaid as $keys => $val) {
+                    $userNameUnPaid_key = date('d/m/Y', strtotime($val->created_at));
+                    $userNameUnPaid_new_arr[$userNameUnPaid_key][$keys] = $val;
+                 }
+                foreach ($userNameUnPaid_new_arr as $keys2 => $vals2){
+                    ?>
+                    <b> Ngày: <?= $keys2 ?></b>
+                    <?php foreach ($vals2 as $vals3){ ?>
+                        <p><?= $vals3->Hoten ?> - <?= number_format($vals3->SoLuong) ?> suất - <?= number_format($vals3->TongTien) ?> <span style="color: red"> - Chưa thanh toán</span></p>
+                    <?php } ?>
+                    <hr>
+                <?php }
+                ?>
             </div>
             <div class="col-md-12" style="height: 50px"></div>
             <div style="clear:both">

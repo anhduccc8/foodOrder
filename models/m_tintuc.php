@@ -54,7 +54,7 @@ class M_tintuc extends database{
         return $this->loadRow();
     }
     public function getUserNameUnpaid(){
-        $sql = "SELECT Hoten, TongTien, created_at  FROM order_user  WHERE Status_od = 5";
+        $sql = "SELECT Hoten, TongTien, SoLuong, created_at  FROM order_user  WHERE Status_od = 5 ORDER BY created_at DESC";
         $this->setQuery($sql);
         return $this->loadAllRows();
     }
