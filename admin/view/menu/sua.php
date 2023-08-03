@@ -31,8 +31,9 @@ if(isset($_POST['sua'])){
         <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label">Tóm Tắt</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputName" placeholder="Mô tả" name="TomTat"
-                value="<?php echo $menubyid->TomTat ?>">
+                <textarea name="TomTat" id="" cols="30" rows="6"><?php echo $menubyid->TomTat ?></textarea>
+<!--                <input type="text" class="form-control" id="inputName" placeholder="Mô tả" name="TomTat"-->
+<!--                value="--><?php //echo $menubyid->TomTat ?><!--">-->
             </div>
         </div>
         <div class="form-group">

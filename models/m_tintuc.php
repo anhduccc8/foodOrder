@@ -25,7 +25,7 @@ class M_tintuc extends database{
 
     public function getImageMenu(){
         $date = date('dmY');
-        $sql = "SELECT  mn.Hinh as HinhMenu, mn.Status as HinhStatus  FROM menu mn  WHERE mn.MaMenu = '$date' " ;
+        $sql = "SELECT  mn.Hinh as HinhMenu, mn.Status as HinhStatus, mn.TomTat as HinhList  FROM menu mn  WHERE mn.MaMenu = '$date' " ;
         $this->setQuery($sql);
         return $this->loadRow(array($date));
     }
@@ -148,9 +148,12 @@ class M_tintuc extends database{
     }
     public function updateOrderUser($id,$HoTen,$SoLuong,$TongTien,$Mota,$isVH){
         $sql = "SELECT *FROM order_user WHERE  id = $id";
+        $updated_at= strtotime(date_default_timezone_set('Asia/Ho_Chi_Minh'));
+        $updated_at = date_create($updated_at);
+        $updated_at = date_format($updated_at,'Y-m-d H:i:s');
         if($id>-1){
             $sql = "UPDATE order_user SET HoTen='$HoTen',SoLuong='$SoLuong',
-                                    TongTien='$TongTien',Mota='$Mota', isVH ='$isVH'
+                                    TongTien='$TongTien',Mota='$Mota', isVH ='$isVH', updated_at = '$updated_at'
                                     WHERE  id = '$id'";
         }
         $this->setQuery($sql);
@@ -179,7 +182,7 @@ class M_tintuc extends database{
 
     public function getHinhMenu(){
         $MaMenu = date('dmY');
-        $sql = "SELECT mn.Hinh
+        $sql = "SELECT mn.Hinh, mn.TomTat as HinhList
             FROM menu AS mn WHERE mn.MaMenu = '$MaMenu'";
         $this->setQuery($sql);
         return $this->loadRow(array());

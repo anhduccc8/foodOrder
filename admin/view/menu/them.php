@@ -30,7 +30,8 @@ if(isset($_POST['them'])){
         <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label">Tóm Tắt</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputName" placeholder="Mô tả" name="TomTat">
+                <textarea name="TomTat" id="" cols="30" rows="6"></textarea>
+<!--                <input type="text" class="form-control" id="inputName" placeholder="Mô tả" name="TomTat">-->
             </div>
         </div>
         <div class="form-group">

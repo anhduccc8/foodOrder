@@ -67,6 +67,8 @@ error_reporting(0);
                         <th scope="col">Số suất đặt</th>
                         <th scope="col">Ghi chú</th>
                         <th scope="col">Tổng tiền</th>
+                        <th scope="col">Tạo</th>
+                        <th scope="col">Update</th>
                         <th scope="col">Trạng thái</th>
                         <th scope="col">Thao tác</th>
 
@@ -77,14 +79,19 @@ error_reporting(0);
                     $t = 1;
                     $t_TongTien = 0;
                     $t_SoLuong = 0;
+                    $text = '';
                     if (count($user) > 0){
-                        foreach ($user as $u){  ?>
+                        foreach ($user as $u){
+                            $text = $text .'<br>'. $u->Mota;
+                            ?>
                             <tr>
                                 <th scope="row"><?= $t ?></th>
                                 <td><?= $u->HoTen; ?></td>
                                 <td><?= $u->SoLuong; ?></td>
                                 <td><?= $u->Mota; ?></td>
                                 <td><?= number_format($u->TongTien, 0, '.', ','); ?> đ</td>
+                                <td><?= $u->created_at ?></td>
+                                <td><?php if ($u->updated_at != $u->created_at ){ echo $u->updated_at;}  ?></td>
                                 <td>
 
                                     <!--                                                1 => "Đang đặt",-->
@@ -131,6 +138,9 @@ error_reporting(0);
                     ?>
                     </tbody>
                 </table>
+                <div>
+                    <texarea><?= htmlspecialchars_decode($text) ?></texarea>
+                </div>
             </div>
             <?php $tt+=1; }
         ?>

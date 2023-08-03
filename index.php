@@ -10,6 +10,9 @@ $slide = $noi_dung['slide'];
 $menu = $noi_dung['menu'];
 $image_menu = $noi_dung['image'];
 
+$listMon = $image_menu->HinhList;
+$listMonArr = explode("\n", $listMon);
+
 if ($image_menu->HinhStatus == 1){
     $chot = true;
 }else{
@@ -51,7 +54,13 @@ if(isset($_POST['them'])){
 //    if (isset($isNuoc) && $isNuoc > 0){
 //        $TongTien = $TongTien + 15000;
 //    }
-    $MoTa = $_POST['mota'];
+    $tenMon = $_POST['tenMon'];
+    if (trim($_POST['mota']) != ''){
+        $MoTa = $tenMon.'|'.$_POST['mota'];
+    }else{
+        $MoTa = $tenMon;
+    }
+
     $Staus = 1;
 
     $created_at= strtotime(date_default_timezone_set('Asia/Ho_Chi_Minh'));
@@ -229,18 +238,27 @@ if(isset($_POST['them'])){
 <!--                        <input type="checkbox" id="isNuoc" name="isNuoc" value="1"><label for="isNuoc">&nbsp; Thêm nước ép</label>-->
 <!--                    </div>-->
                     <div class="form-group">
-                        <label for="mota">Tên món + Ghi chú </label>
-                        <textarea class="form-control" id="mota" name="mota" rows="2" placeholder="V.d: Cơm gạo tám thịt ba chỉ quay - ít cơm, không ớt">Cơm gạo tám </textarea>
+                        <label for="tenMon">Chọn Tên Món</label>
+                        <select class="form-control" id="tenMon" name="tenMon" required>
+                            <option value="">Vui lòng chọn món</option>
+                           <?php foreach ($listMonArr as $lma){ ?>
+                               <option value="<?= $lma ?>"><?= $lma ?></option>
+                           <?php } ?>
+                        </select>
                     </div>
+
                     <div class="form-group">
                         <label for="soluong">Số suất đặt</label>
                         <input type="text" class="form-control" name="soluong" id="soluong" required>
                     </div>
-
                     <div class="form-group reg_cash_amount_none">
                         <label for="soluong">Tổng tiền (Có thể thay đổi nếu thêm toping)</label>
                         <p id="tongtien_display" style="color: red; font-weight: bold"></p>
                         <input type="hidden" class="form-control" name="tongtien" id="tongtien" >
+                    </div>
+                    <div class="form-group">
+                        <label for="mota">Ghi chú </label>
+                        <textarea class="form-control" id="mota" name="mota" rows="2" placeholder="V.d:ít cơm, không ớt, thêm toping v.v.."></textarea>
                     </div>
 <!--                    <div class="form-group">-->
 <!--                        <input class="reg_cash" type="checkbox" name="reg_cash" value="1"><label for="reg_cash">&nbsp; Đặt customize (dành cho ai thêm cơm, thêm thức ăn, khác số tiền 30k..)</label>-->

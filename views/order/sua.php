@@ -6,12 +6,24 @@ $chitietOrder = $c_tintuc->chitietOrder();
 $chitiet = $chitietOrder['chitietOrder'];
 $HinhOrder = $c_tintuc->getHinhMenu();
 $hinh = $HinhOrder['getHinhMenu'];
+$listMon = $hinh->HinhList;
+$listMonArr = explode("\n", $listMon);
+$motaArr = explode('|', $chitiet->Mota);
+$tenMonA = $motaArr[0];
+$motaMonA = $motaArr[1];
+
 if(isset($_POST['sua'])){
     $HoTen = $_POST['hoten'];
     $isVH = $_POST['isVH'];
     $isNuoc = $_POST['isNuoc'];
     $SoLuong = $_POST['soluong'];
-    $Mota = $_POST['mota'];
+
+    $tenMon = $_POST['tenMon'];
+    if (trim($_POST['mota']) != ''){
+        $Mota = $tenMon.'|'.$_POST['mota'];
+    }else{
+        $Mota = $tenMon;
+    }
 //    $TongTien = $_POST['tongtien'];
     $TongTien2 = $_POST['tongtien2'];
     if ($TongTien2 != '' || $TongTien2 != 0){
@@ -111,8 +123,16 @@ if(isset($_POST['sua'])){
 <!--                    <input type="checkbox" id="isNuoc" name="isNuoc" value="1"><label for="isNuoc">&nbsp; Thêm nước ép</label>-->
 <!--                </div>-->
                 <div class="form-group">
-                    <label for="mota">Tên món + Ghi chú </label>
-                    <textarea class="form-control" id="mota" name="mota" rows="2" value="<?= $chitiet->Mota; ?>"><?= $chitiet->Mota; ?></textarea>
+                    <label for="tenMon">Chọn Tên Món</label>
+                    <select class="form-control" id="tenMon" name="tenMon" required>
+                        <?php foreach ($listMonArr as $lma){ ?>
+                            <option value="<?= $lma ?>" <?php if (trim($tenMonA) == trim($lma) ){echo 'selected';} ?> ><?= $lma ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mota">Ghi chú </label>
+                    <textarea class="form-control" id="mota" name="mota" rows="2" value="<?= $motaMonA ?>"><?= $motaMonA ?></textarea>
                 </div>
                 <div class="form-group">
                     <label for="soluong">Số suất đặt</label>
