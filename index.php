@@ -169,9 +169,9 @@ if(isset($_POST['them'])){
 <!--                       <img src="http://localhost/foodOrder/public/image/menu/260522.jpg" class="img-responsive" alt="..." style="max-height: 500px; float: right; width: 100%;">-->
                     <img id="imageresource" src="public/image/menu/<?php echo $image_menu->HinhMenu ?>" style="max-height: 500px; float: right; width: 100%;">
                 </a>
-                <a href="#" id="pop">
-                    <img id="imageresource" src="public/image/menu/image2.jpg" style="max-height: 500px; width: 100%; float: right">
-                </a>
+<!--                <a href="#" id="pop">-->
+<!--                    <img id="imageresource" src="public/image/menu/image2.jpg" style="max-height: 500px; width: 100%; float: right">-->
+<!--                </a>-->
 
                 <!-- Creates the bootstrap modal where the image will appear -->
                 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -192,11 +192,11 @@ if(isset($_POST['them'])){
             </div>
             <div class="col-md-5">
                 <form method="post" action="#">
-                    <h2 style="font-weight: bold; color: red">ĐẶT CƠM NGÀY <?= date('d/m/Y'); ?> (<span id="demo_timer">9h30</span>)</h2>
+                    <h2 style="font-weight: bold; color: red">ĐẶT CƠM NGÀY <?= date('d/m/Y'); ?> (<span id="demo_timer">10h30</span>)</h2>
                     <blockquote class="font12">
                         <h5 class="mrtop0 bold blueFont"><i class="glyphicon glyphicon-info-sign"></i> Lưu ý:</h5>
                         <h5>- Văn minh lịch sự, không sửa hàng của đồng nghiệp.</h5>
-                        <h5>- Thời hạn đăng ký đến 9h30 hằng ngày.</h5>
+                        <h5>- Thời hạn đăng ký đến 10h30 hằng ngày.</h5>
                         <h5><strong style="color: red;">STK Nhận tiền: 19036581222012 - Tech - BUI ANH DUC or <a
                                         href="#" id="pop2" data-src="public/image/RQ_shop.jpg" >Quét mã QR</a></strong></h5>
 
@@ -229,22 +229,23 @@ if(isset($_POST['them'])){
 <!--                        <input type="checkbox" id="isNuoc" name="isNuoc" value="1"><label for="isNuoc">&nbsp; Thêm nước ép</label>-->
 <!--                    </div>-->
                     <div class="form-group">
+                        <label for="mota">Tên món + Ghi chú </label>
+                        <textarea class="form-control" id="mota" name="mota" rows="2" placeholder="V.d: Cơm gạo tám thịt ba chỉ quay - ít cơm, không ớt">Cơm gạo tám </textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="soluong">Số suất đặt</label>
                         <input type="text" class="form-control" name="soluong" id="soluong" required>
                     </div>
 
                     <div class="form-group reg_cash_amount_none">
-                        <label for="soluong">Tổng tiền</label>
+                        <label for="soluong">Tổng tiền (Có thể thay đổi nếu thêm toping)</label>
                         <p id="tongtien_display" style="color: red; font-weight: bold"></p>
                         <input type="hidden" class="form-control" name="tongtien" id="tongtien" >
                     </div>
 <!--                    <div class="form-group">-->
 <!--                        <input class="reg_cash" type="checkbox" name="reg_cash" value="1"><label for="reg_cash">&nbsp; Đặt customize (dành cho ai thêm cơm, thêm thức ăn, khác số tiền 30k..)</label>-->
 <!--                    </div>-->
-                    <div class="form-group">
-                        <label for="mota">Ghi chú </label>
-                        <textarea class="form-control" id="mota" name="mota" rows="2" placeholder="Chỉ rau, không cơm,..."></textarea>
-                    </div>
+
 <!--                    <div class="form-group reg_cash_amount" style="display: none">-->
 <!--                        <label for="tongtien2">Số tiền mong muốn</label>-->
 <!--                        <input type="hidden" class="form-control" name="tongtien2" id="tongtien2" placeholder="10k, 20k, 50k,...">-->

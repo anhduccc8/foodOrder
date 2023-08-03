@@ -111,6 +111,10 @@ if(isset($_POST['sua'])){
 <!--                    <input type="checkbox" id="isNuoc" name="isNuoc" value="1"><label for="isNuoc">&nbsp; Thêm nước ép</label>-->
 <!--                </div>-->
                 <div class="form-group">
+                    <label for="mota">Tên món + Ghi chú </label>
+                    <textarea class="form-control" id="mota" name="mota" rows="2" value="<?= $chitiet->Mota; ?>"><?= $chitiet->Mota; ?></textarea>
+                </div>
+                <div class="form-group">
                     <label for="soluong">Số suất đặt</label>
                     <input type="text" class="form-control" name="soluong" id="soluong" value="<?= $chitiet->SoLuong; ?>" required>
                 </div>
@@ -119,10 +123,7 @@ if(isset($_POST['sua'])){
                     <p id="tongtien_display"></p>
                     <input type="hidden" class="form-control" name="tongtien" id="tongtien" value="<?= $chitiet->TongTien; ?>">
                 </div>
-                <div class="form-group">
-                    <label for="mota">Ghi chú </label>
-                    <textarea class="form-control" id="mota" name="mota" rows="2" value="<?= $chitiet->Mota; ?>"><?= $chitiet->Mota; ?></textarea>
-                </div>
+
                 <button type="submit" class="btn btn-primary" name="sua">Xác nhận</button>
             </form>
         </div>
