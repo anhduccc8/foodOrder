@@ -143,7 +143,7 @@ if(isset($_POST['sua'])){
                     <p id="tongtien_display"></p>
                     <input type="hidden" class="form-control" name="tongtien" id="tongtien" value="<?= $chitiet->TongTien; ?>">
                 </div>
-
+                <input type="hidden" class="form-control" name="tongtien2" id="tongtien2" value="">
                 <button type="submit" class="btn btn-primary" name="sua">Xác nhận</button>
             </form>
         </div>
