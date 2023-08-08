@@ -23,6 +23,18 @@ $menubymamenu = $noidung7['menubymamenu'];
 $noidung5 = $c_admin->getMenuAd();
 $menu = $noidung5['menu'];
 
+
+
+$chitietOrder = $c_admin->chitietOrder();
+$chitiet = $chitietOrder['chitietOrder'];
+$HinhOrder = $c_admin->getHinhMenu();
+$hinh = $HinhOrder['getHinhMenu'];
+$listMon = $hinh->HinhList;
+$listMonArr = explode("\n", $listMon);
+$motaArr = explode('|', $chitiet->Mota);
+$tenMonA = $motaArr[0];
+$motaMonA = $motaArr[1];
+
 if (isset($_GET['confirm_finish'])){
     $c_admin->confirmFinish();
 }

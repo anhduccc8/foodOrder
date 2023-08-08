@@ -60,6 +60,9 @@ if(isset($_POST['them'])){
     }else{
         $MoTa = $tenMon;
     }
+    if (trim($tenMon) == 'Cháo lòng'){
+        $TongTien = $SoLuong*25000;
+    }
 
     $Staus = 1;
 
@@ -252,7 +255,7 @@ if(isset($_POST['them'])){
                         <input type="text" class="form-control" name="soluong" id="soluong" required>
                     </div>
                     <div class="form-group reg_cash_amount_none">
-                        <label for="soluong">Tổng tiền (Có thể thay đổi nếu thêm toping)</label>
+                        <label for="soluong">Tổng tiền (Có thể thay đổi nếu thêm toping, cháo lòng, chỉ cơm,..)</label>
                         <p id="tongtien_display" style="color: red; font-weight: bold"></p>
                         <input type="hidden" class="form-control" name="tongtien" id="tongtien" >
                     </div>

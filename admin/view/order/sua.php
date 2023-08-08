@@ -1,44 +1,11 @@
 <?php
-session_start();
-include "controllers/c_tintuc.php";
-$c_tintuc = new C_tintuc();
-$chitietOrder = $c_tintuc->chitietOrder();
-$chitiet = $chitietOrder['chitietOrder'];
-$HinhOrder = $c_tintuc->getHinhMenu();
-$hinh = $HinhOrder['getHinhMenu'];
-$listMon = $hinh->HinhList;
-$listMonArr = explode("\n", $listMon);
-$motaArr = explode('|', $chitiet->Mota);
-$tenMonA = $motaArr[0];
-$motaMonA = $motaArr[1];
 
 if(isset($_POST['sua'])){
-    $HoTen = $_POST['hoten'];
-    $isVH = $_POST['isVH'];
-    $isNuoc = $_POST['isNuoc'];
-    $SoLuong = $_POST['soluong'];
 
-    $tenMon = $_POST['tenMon'];
-    if (trim($_POST['mota']) != ''){
-        $Mota = $tenMon.'|'.$_POST['mota'];
-    }else{
-        $Mota = $tenMon;
-    }
-//    $TongTien = $_POST['tongtien'];
-    $TongTien2 = $_POST['tongtien2'];
-    if ($TongTien2 != '' || $TongTien2 != 0){
-        $TongTien = $TongTien2;
-    }else{
-        $TongTien = $SoLuong*35000;
-    }
-//    if (isset($isNuoc) && $isNuoc > 0){
-//        $TongTien = $TongTien + 15000;
-//    }
-    if (trim($tenMon) == 'Cháo lòng'){
-        $TongTien = $SoLuong*25000;
-    }
+    $TongTien = $_POST['tongtien'];
+
     $id = trim($_GET['id']);
-    $c_tintuc->updateOrder($id,$HoTen,$SoLuong,$TongTien,$Mota,$isVH);
+    $c_admin->updateOrder($id,$TongTien);
 }
 ?>
 <!DOCTYPE html>
@@ -120,14 +87,14 @@ if(isset($_POST['sua'])){
                 <h2 style="font-weight: bold; color: red">ĐẶT CƠM NGÀY <?= date('d/m/Y'); ?></h2>
                 <div class="form-group">
                     <label for="hoten">Họ và tên</label>
-                    <input type="text" class="form-control" name="hoten" id="hoten" placeholder="Họ và Tên" value="<?= $chitiet->HoTen; ?>" required>
+                    <input type="text" class="form-control" name="hoten" id="hoten" placeholder="Họ và Tên" value="<?= $chitiet->HoTen; ?>" disabled required>
                 </div>
 <!--                <div class="form-group">-->
 <!--                    <input type="checkbox" id="isNuoc" name="isNuoc" value="1"><label for="isNuoc">&nbsp; Thêm nước ép</label>-->
 <!--                </div>-->
                 <div class="form-group">
                     <label for="tenMon">Chọn Tên Món</label>
-                    <select class="form-control" id="tenMon" name="tenMon" required>
+                    <select class="form-control" id="tenMon" name="tenMon" disabled required>
                         <?php foreach ($listMonArr as $lma){ ?>
                             <option value="<?= $lma ?>" <?php if (trim($tenMonA) == trim($lma) ){echo 'selected';} ?> ><?= $lma ?></option>
                         <?php } ?>
@@ -135,18 +102,17 @@ if(isset($_POST['sua'])){
                 </div>
                 <div class="form-group">
                     <label for="mota">Ghi chú </label>
-                    <textarea class="form-control" id="mota" name="mota" rows="2" value="<?= $motaMonA ?>"><?= $motaMonA ?></textarea>
+                    <textarea class="form-control" id="mota" name="mota" rows="2" value="<?= $motaMonA ?>" disabled><?= $motaMonA ?></textarea>
                 </div>
                 <div class="form-group">
                     <label for="soluong">Số suất đặt</label>
-                    <input type="text" class="form-control" name="soluong" id="soluong" value="<?= $chitiet->SoLuong; ?>" required>
+                    <input type="text" class="form-control" name="soluong" id="soluong" value="<?= $chitiet->SoLuong; ?>" disabled required>
                 </div>
                 <div class="form-group">
                     <label for="soluong">Tổng tiền</label>
                     <p id="tongtien_display"></p>
-                    <input type="hidden" class="form-control" name="tongtien" id="tongtien" value="<?= $chitiet->TongTien; ?>">
+                    <input type="text" class="form-control" name="tongtien" id="tongtien" value="<?= $chitiet->TongTien; ?>">
                 </div>
-                <input type="hidden" class="form-control" name="tongtien2" id="tongtien2" value="">
                 <button type="submit" class="btn btn-primary" name="sua">Xác nhận</button>
             </form>
         </div>

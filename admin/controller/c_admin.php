@@ -160,6 +160,17 @@ class C_admin{
         header('location:?view=order/ds#'.$link);
     }
 
+    public function chitietOrder(){
+        $id_order = $_GET['id'];
+        $m_admin = new M_admin();
+        $chitietOrder = $m_admin->getChiTietOrder($id_order);
+        return array('chitietOrder'=>$chitietOrder);
+    }
+    public function getHinhMenu(){
+        $m_admin = new M_admin();
+        $chitietOrder = $m_admin->getHinhMenu();
+        return array('getHinhMenu'=>$chitietOrder);
+    }
     public function stripUnicode($str){
         if(!$str) return false;
         $unicode = array(
@@ -187,6 +198,12 @@ class C_admin{
         $str = mb_convert_case($str,MB_CASE_TITLE,'utf-8');
         $str = str_replace('','-',$str);
         return $str;
+    }
+
+    public function updateOrder($id,$TongTien){
+        $m_admin = new M_admin();
+        $m_admin->updateAmountOrderUser($id, $TongTien);
+        header('location:?view=order/ds');
     }
 
 

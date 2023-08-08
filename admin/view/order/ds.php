@@ -13,11 +13,15 @@ if (isset($_GET['confirm_paid'])){
 if (isset($_GET['confirm_unpaid'])){
     $c_admin->confirmUnPaid($_GET['link']);
 }
+if (isset($_GET['sua'])){
+    $c_admin->confirmUnPaid($_GET['link']);
+}
 if (isset($_GET['hienthi'])){
     $hienthi = $_GET['hienthi'];
 }else{
     $hienthi = 15;
 }
+
 ini_set('display_errors', false);
 error_reporting(0);
 ?>
@@ -122,6 +126,7 @@ error_reporting(0);
                                     <?php if ($u->Status_od == 1 ){ ?>
                                         <a href="?view=order/ds&confirm_unpaid=<?php echo $u->id?>&link=<?= $drk ?>" class="label label-danger">Make chưa thanh toán</a>
                                     <?php } ?>
+                                    <a href="?view=order/sua&id=<?php echo $u->id?>" class="label label-primary">Sửa</a>
                                 </td>
                             </tr>
                             <?php $t+=1; if($u->Status_od != 4) {$t_TongTien = $t_TongTien + $u->TongTien; $t_SoLuong = $t_SoLuong + $u->SoLuong;} } ?>

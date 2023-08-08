@@ -161,5 +161,26 @@ class M_admin extends database{
         return $this->loadRow(array($id));
     }
 
+    public function getChiTietOrder($id){
+        $sql = "SELECT *FROM order_user WHERE id = $id";
+        $this->setQuery($sql);
+        return $this->loadRow(array($id));
+    }
+    public function getHinhMenu(){
+        $MaMenu = date('dmY');
+        $sql = "SELECT mn.Hinh, mn.TomTat as HinhList
+            FROM menu AS mn WHERE mn.MaMenu = '$MaMenu'";
+        $this->setQuery($sql);
+        return $this->loadRow(array());
+    }
+    public function updateAmountOrderUser($id,$TongTien){
+        $sql = "SELECT *FROM order_user WHERE  id = $id";
+
+        if($id>-1){
+            $sql = "UPDATE order_user SET TongTien='$TongTien' WHERE  id = '$id'";
+        }
+        $this->setQuery($sql);
+        return $this->execute(array($id,$TongTien));
+    }
 }
 ?>
