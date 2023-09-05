@@ -103,6 +103,9 @@ if (!isset( $_SESSION['id_user'])){
 <body>
 <div class="content">
     <div><h3>Chào <?php echo $_SESSION['user_name'] ?> đến với trang Admin <a href="https://noithatlonghuyen.com/DatCom">B</a></h3> </div>
+    <a href="https://docs.google.com/spreadsheets/d/1y6JF_6XkYzTraB2MgeuBz8nfmfjHnVZDb-bNJ7iVWnM/edit#gid=330021777">Cơm</a>
+    <a href="https://noithatlonghuyen.com/DatCom/vl645.php">V645</a>
+    <a href="https://noithatlonghuyen.com/DatCom/vl655.php">V655</a>
     <nav class="navbar navbar-default container col-md-2 mobile-min-h">
         <div class="row">
             <div class="container-fluid">
