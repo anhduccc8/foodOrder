@@ -7,6 +7,8 @@ for($i=1;$i<=6;$i++){
     $t =  $arr[0].$arr[1];
     if(!in_array($t, $array_2) && (int)$t < 46){
         array_push($array_2, $t);
+    }else{
+        $i--;
     }
 }
 $string = implode('--',$array_2);
